@@ -92,6 +92,20 @@ class EventDashboard extends Component {
 		})
 	}
 
+	handleUpdateEvent = (updatedEvent) => {
+		this.setState(({events}) => ({
+			events: events.map(event => {
+				if (event.id === updatedEvent.id){
+					return {...updatedEvent}
+				}else {
+					return event
+				}
+			}),
+			isOpen: false,
+			selectedEvent: null
+		}))
+	}
+
 	handleFormCancel = () => {
 		this.setState({
 			isOpen: false
@@ -111,7 +125,8 @@ class EventDashboard extends Component {
 				  {isOpen && (
 					  <EventForm 
 					  	key={selectedEvent ? selectedEvent.id : 0 }
-					  	selectedEvent = {selectedEvent}
+						selectedEvent = {selectedEvent}
+						updateEvent={this.handleUpdateEvent}
 					  	createEvent={this.handleCreateEvent} 
 					  	cancelFormOpen={this.handleFormCancel}
 					  />
