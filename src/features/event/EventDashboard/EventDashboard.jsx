@@ -106,6 +106,13 @@ class EventDashboard extends Component {
 		}))
 	}
 
+	handleDeleteEvent = (id) => {
+		this.setState(({events}) => ({
+			events: events.filter(e => e.id !== id)
+		}))
+
+	}
+
 	handleFormCancel = () => {
 		this.setState({
 			isOpen: false
@@ -118,7 +125,11 @@ class EventDashboard extends Component {
 		return (
 			<Grid>
 				<Grid.Column width={10}>
-				  <EventList events={events} selectEvent={this.handleSelectEvent} />
+				  <EventList 
+					  events={events} 
+					  selectEvent={this.handleSelectEvent} 
+					  deleteEvent={this.handleDeleteEvent}
+				   />
 				</Grid.Column>
 				<Grid.Column width={6}>
 				  <Button onClick={this.handleCreateFormOpen} positive content='Create Event' />

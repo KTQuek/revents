@@ -5,7 +5,7 @@ import EventListAttendee from './EventListAttendee';
 
 class EventListItem extends Component {
 	render() {
-		const {event, selectEvent} = this.props;
+		const {event, selectEvent, deleteEvent} = this.props;
 		return (
 			<Segment.Group>
 			<Segment>
@@ -36,6 +36,12 @@ class EventListItem extends Component {
 			</Segment>
 			<Segment clearing>
 			  <span>{event.description}</span>
+			  <Button 
+			  	onClick={() => deleteEvent(event.id)}
+			  	as='' color="red" 
+			  	floated="right" 
+			  	content="Delete" 
+			  />
 			  <Button 
 				  onClick={() => selectEvent(event)}
 				  as='' color="teal" 
